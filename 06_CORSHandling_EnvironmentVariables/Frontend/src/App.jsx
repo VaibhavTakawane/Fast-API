@@ -26,6 +26,12 @@ function App() {
           ) : (
             <p>LOADING.....</p>)
         }
+        {
+          data ? (
+            <p>ALLOWED ORIGINS : {data.allowed_origins}</p>
+          ) : (
+            <p>LOADING.....</p>)
+        }
       </div>
     </>
   )

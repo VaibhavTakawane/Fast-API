@@ -4,9 +4,11 @@ from sqlalchemy.orm import Session, sessionmaker, declarative_base
 
 from fastapi import FastAPI, Depends, HTTPException, status
 
+from config import settings
+
 app = FastAPI()
 
-DATABASE_URL = "sqlite:///./test.db"
+DATABASE_URL = settings.DATABASE_URL
 
 engine = create_engine(
     DATABASE_URL,
