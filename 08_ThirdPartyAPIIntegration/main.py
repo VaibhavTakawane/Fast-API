@@ -26,4 +26,4 @@ def get_post(p_id: int):
         response = requests.get(url)
         return response.json()
     except Exception as e:
-        return {"ERROR":e}
+        return {"ERROR": str(e)}
