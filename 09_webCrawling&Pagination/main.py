@@ -8,6 +8,7 @@ app = FastAPI()
 def get_news(page: int = 1, limit: int = 5):     #setting page & limit
     url = "https://news.ycombinator.com/"
     response = requests.get(url)
+
     # parse html
     soup = BeautifulSoup(response.text, "html.parser")
     title = []
@@ -17,6 +18,7 @@ def get_news(page: int = 1, limit: int = 5):     #setting page & limit
     #PAGINATION LOGIC:
     start = (page - 1) * limit
     end = start + limit
+    
     return {
         "page":page,
         "limit":limit,

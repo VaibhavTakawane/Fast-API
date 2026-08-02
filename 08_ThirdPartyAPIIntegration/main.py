@@ -11,19 +11,41 @@ import requests
 
 app = FastAPI()
 
-#all posts
+# all posts
 @app.get("/posts")
-def get_posts():
+def get_posts(page: int = 1, limit: int = 5):
     url = "https://jsonplaceholder.typicode.com/posts/"
     response = requests.get(url)
-    return response.json()
+    data =  response.json()
 
-#single post
+    result = []
+    for i in data:
+        result.append(i)
+
+        # result.append({
+        #             "id": i["id"],                #to add specific data
+        #             "title": i["title"]
+        #         })
+
+    # pagination logic:
+    start = (page-1)*limit
+    end = start + limit
+
+    return {
+                "page": page,
+                "limit": limit,
+                "Total": len(result),
+                "data": result[start:end]
+            }
+# -----------------------------------
+
+# single post
 @app.get("/post/{p_id}")
 def get_post(p_id: int):
     try:
         url = f"https://jsonplaceholder.typicode.com/posts/{p_id}"
         response = requests.get(url)
-        return response.json()
+        data = response.json()
+        return data 
     except Exception as e:
         return {"ERROR": str(e)}
