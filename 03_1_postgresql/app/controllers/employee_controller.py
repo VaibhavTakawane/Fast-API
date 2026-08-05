@@ -14,3 +14,6 @@ def create_employee_controller(db:Session, emp_data):
 
 def update_employee_controller(db:Session, e_id:int, emp_data):
     return update_employee_service(db, e_id, emp_data.model_dump())
+
+def delete_employee_controller(db:Session, e_id:int):
+    return delete_employee_service(db, e_id)

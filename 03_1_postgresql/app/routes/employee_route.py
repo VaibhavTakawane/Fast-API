@@ -24,3 +24,7 @@ def create_employee(employee: EmployeeRequest, db: Session = Depends(get_db)):
 @router.put("/{e_id}", response_model=EmployeeResponse)
 def update_employee(e_id: int, employee: EmployeeRequest, db: Session = Depends(get_db)):
     return update_employee_controller(db, e_id, employee)
+
+@router.delete("/{e_id}")
+def delete_employee(e_id: int, db: Session = Depends(get_db)):
+    return delete_employee_controller(db, e_id)
